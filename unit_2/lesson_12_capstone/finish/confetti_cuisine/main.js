@@ -1,10 +1,12 @@
-"use strict";
+import express from "express";
+import dotenv from "dotenv";
+import layouts from "express-ejs-layouts";
+import homeController from "./controllers/homeController.js";
+import errorController from "./controllers/errorController.js";
 
-const express = require("express"),
-  app = express(),
-  homeController = require("./controllers/homeController"),
-  errorController = require("./controllers/errorController"),
-  layouts = require("express-ejs-layouts");
+dotenv.config();
+
+const app = express();
 
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 3000);
@@ -31,3 +33,5 @@ app.use(errorController.internalServerError);
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });
+
+export default app;

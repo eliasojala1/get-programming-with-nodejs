@@ -1,5 +1,3 @@
-"use strict";
-
 var courses = [
   {
     title: "Event Driven Cakes",
@@ -15,16 +13,18 @@ var courses = [
   }
 ];
 
-exports.showCourses = (req, res) => {
+export const showCourses = (req, res) => {
   res.render("courses", {
     offeredCourses: courses
   });
 };
 
-exports.showSignUp = (req, res) => {
+export const showSignUp = (req, res) => {
   res.render("contact");
 };
 
-exports.postedSignUpForm = (req, res) => {
+export const postedSignUpForm = (req, res) => {
   res.render("thanks");
 };
+
+export default { showCourses, showSignUp, postedSignUpForm };

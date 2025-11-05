@@ -4,15 +4,15 @@ body {
   margin: 0;
   padding-top: 150px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #625a56;
+  color: #97654c;
 }
 
 #nav {
   width: 100%;
   height: 110px;
   padding: 20px 0 5px 0;
-  border-bottom: solid 8px #ee3114;
-  box-shadow: 10px 10px 10px #ccc;
+  border-bottom: solid 8px #01c5ab;
+  box-shadow: 1px 50px 50px #035d99;
   position: absolute;
   top: 0;
 }
@@ -47,7 +47,7 @@ a {
 }
 
 .button {
-  background-color: #ed4a0f;
+  background-color: #0313a0;
   padding: 0.3vw 3vw;
   border-radius: 2px;
   cursor: pointer;
@@ -56,6 +56,6 @@ a {
 }
 
 .button:hover {
-  background-color: #ffb99f;
-  color: #ed4a0f;
+  background-color: #2b68ee;
+  color: #ffffff;
 }
