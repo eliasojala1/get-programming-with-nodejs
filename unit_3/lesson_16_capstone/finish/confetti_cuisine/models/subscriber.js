@@ -1,10 +1,11 @@
-"use strict";
+import mongoose from "mongoose";
 
-const mongoose = require("mongoose"),
-  subscriberSchema = mongoose.Schema({
-    name: String,
-    email: String,
-    zipCode: Number
-  });
+const subscriberSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, trim: true, lowercase: true },
+  zipCode: { type: Number, required: true },
+  streetAddress: { type: String, required: true },
+  vip: { type: Boolean, default: false }
+});
 
-module.exports = mongoose.model("Subscriber", subscriberSchema);
+export const Subscriber = mongoose.model("Subscriber", subscriberSchema);

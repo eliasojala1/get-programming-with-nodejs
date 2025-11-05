@@ -1,40 +1,36 @@
-"use strict";
+import { Subscriber } from "../models/subscriber.js";
 
-const Subscriber = require("../models/subscriber");
-
-exports.getAllSubscribers = (req, res) => {
-  Subscriber.find({})
-    .exec()
-    .then(subscribers => {
-      res.render("subscribers", {
-        subscribers: subscribers
-      });
-    })
-    .catch(error => {
-      console.log(error.message);
-      return [];
-    })
-    .then(() => {
-      console.log("promise complete");
-    });
+export const getAllSubscribers = async (req, res) => {
+  try {
+    const subscribers = await Subscriber.find({});
+    res.render("subscribers", { subscribers });
+  } catch (err) {
+    console.error(err);
+    res.render("error", { message: "Could not fetch subscribers." });
+  }
 };
 
-exports.getSubscriptionPage = (req, res) => {
+export const getSubscriptionPage = (req, res) => {
   res.render("contact");
 };
 
-exports.saveSubscriber = (req, res) => {
-  let newSubscriber = new Subscriber({
-    name: req.body.name,
-    email: req.body.email,
-    zipCode: req.body.zipCode
-  });
-  newSubscriber
-    .save()
-    .then(() => {
-      res.render("thanks");
-    })
-    .catch(error => {
-      res.send(error);
+export const saveSubscriber = async (req, res) => {
+  try {
+    const { name, email, zipCode, streetAddress, vip } = req.body;
+
+    const newSubscriber = new Subscriber({
+      name,
+      email,
+      zipCode,
+      streetAddress,
+      vip: vip === "on" || vip === true
     });
+
+    await newSubscriber.save();
+
+    res.render("thanks", { subscriber: newSubscriber });
+  } catch (err) {
+    console.error(err);
+    res.render("error", { message: "Could not save subscriber." });
+  }
 };
